@@ -22,7 +22,7 @@ public class Message extends BaseModel {
     private String content;
     private String room;
 
-    private String user;
+    private String username;
 
 
 }
