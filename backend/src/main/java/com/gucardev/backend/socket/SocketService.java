@@ -32,6 +32,7 @@ public class SocketService {
                 .messageType(MessageType.SERVER)
                 .content(message.getContent())
                 .room(message.getRoom())
+                .username(message.getUsername())
                 .build());
         sendSocketMessage(senderClient, storedMessage, message.getRoom());
     }
