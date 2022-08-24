@@ -29,7 +29,7 @@ public class SocketService {
 
     public void saveMessage(SocketIOClient senderClient, Message message) {
         Message storedMessage = messageService.saveMessage(Message.builder()
-                .messageType(MessageType.SERVER)
+                .messageType(MessageType.CLIENT)
                 .content(message.getContent())
                 .room(message.getRoom())
                 .username(message.getUsername())
