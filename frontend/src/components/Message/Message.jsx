@@ -18,8 +18,16 @@ export const Message = ({ room, username }) => {
   }, [socketResponse]);
 
   const sendMessage = () => {
-    sendData({ content: "selam denemelik" });
-    addMessageToList({ content: "selam denemelik", username: username });
+    sendData({
+      content:
+        "selam denemelikselam denemelikselam denemelikselam denemelikselam denemelikselam denemelik",
+    });
+    addMessageToList({
+      content:
+        "selam denemelikselam denemelikselam denemelikselam denemelikselam denemelikselam denemelik",
+      username: username,
+      messageType: "CLIENT",
+    });
   };
 
   return (
@@ -28,7 +36,7 @@ export const Message = ({ room, username }) => {
       <h2>Connected: {isConnected}</h2>
       <h2>{JSON.stringify(socketResponse)}</h2>
       <button onClick={() => sendMessage()}>send</button>
-      <MessageList messageList={messageList} />
+      <MessageList username={username} messageList={messageList} />
     </div>
   );
 };
