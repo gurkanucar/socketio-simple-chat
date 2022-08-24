@@ -11,6 +11,16 @@
 
 **H2 db**
 
+## Example Images
+
+![example](./frontend/images/ex1.png)
+
+![example](./frontend/images/ex2.png)
+
+### Example Video:
+
+[https://www.youtube.com/watch?v=y7jnF7MuNLI](https://www.youtube.com/watch?v=y7jnF7MuNLI)
+
 
 
 ## BACKEND
@@ -21,7 +31,6 @@
 
 **H2 db:** socket server
 
-&nbsp;
 
 ### How to run
 
@@ -47,8 +56,6 @@ socket-server.host=192.168.0.10 // write your ip address not local host
 
 ## FRONTEND
 
-
-# Socket io chat example frontend
 
 ### Used Packages
 
@@ -88,16 +95,3 @@ export const SOCKET_BASE_URL = "http://192.168.0.10:8085"; // write your ip addr
 export const API_BASE_URL = "http://192.168.0.10:8080"; // write your ip address not local host
 
 
-## Example Images
-
-![example](./frontend/images/ex1.png)
-
-![example](./frontend/images/ex2.png)
-
-### Example Video:
-
-[https://www.youtube.com/watch?v=y7jnF7MuNLI](https://www.youtube.com/watch?v=y7jnF7MuNLI)
-
-### Frontend:
-
-[https://github.com/gurkanucar/socketio-simple-chat/tree/master/frontend](https://github.com/gurkanucar/socketio-simple-chat/tree/master/frontend)
