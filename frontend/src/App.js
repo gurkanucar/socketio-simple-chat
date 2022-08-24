@@ -2,6 +2,7 @@ import logo from "./logo.svg";
 import "./App.css";
 import { Login } from "./components/Login/Login";
 import { useState } from "react";
+import { Message } from "./components/Message/Message";
 
 function App() {
   const [username, setUsername] = useState("");
@@ -19,7 +20,7 @@ function App() {
           setLoggedIn={setLoggedIn}
         />
       ) : (
-        <div></div>
+        <Message room={room} username={username} />
       )}
     </div>
   );

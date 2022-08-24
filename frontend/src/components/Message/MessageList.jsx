@@ -1,8 +1,13 @@
-import React from 'react'
-import "./Message.css"
+import React from "react";
+import "./Message.css";
+import { MessageItem } from "./MessageItem";
 
-export const MessageList = () => {
+export const MessageList = ({ messageList }) => {
   return (
-    <div>MessageList</div>
-  )
-}
+    <div>
+      {messageList.map((x, idx) => (
+        <MessageItem key={idx} message={x} />
+      ))}
+    </div>
+  );
+};
