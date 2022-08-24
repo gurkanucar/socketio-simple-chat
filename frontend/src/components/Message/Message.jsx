@@ -3,6 +3,7 @@ import { useSocket } from "../../customHooks/useSocket";
 import { RiSendPlaneLine, RiSendPlaneFill } from "react-icons/ri";
 import "./Message.css";
 import { MessageList } from "./MessageList";
+import { timeStampConverter } from "../../util/timeUtils";
 
 export const Message = ({ room, username }) => {
   const { isConnected, socketResponse, sendData } = useSocket(room, username);
@@ -12,10 +13,12 @@ export const Message = ({ room, username }) => {
   const [messageList, setMessageList] = useState([]);
 
   const addMessageToList = (val) => {
+    if (val.room == "") return;
     setMessageList([...messageList, val]);
   };
 
   useEffect(() => {
+    console.log("Socket Response: ", socketResponse);
     addMessageToList(socketResponse);
   }, [socketResponse]);
 
@@ -25,9 +28,11 @@ export const Message = ({ room, username }) => {
       sendData({
         content: messageInput,
       });
+      const time = ""; //timeStampConverter(Math.floor(Date.now() / 1000));
       addMessageToList({
         content: messageInput,
         username: username,
+        createdDateTime: new Date(),
         messageType: "CLIENT",
       });
       setMessageInput("");

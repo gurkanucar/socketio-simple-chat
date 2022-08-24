@@ -76,6 +76,12 @@
   color: white;
 }
 
+.message_content_value {
+  display: flex;
+  width: 100%;
+  text-align: start;
+}
+
 .message_content_client_self {
   background-color: rgb(15, 77, 211);
   display: flex;
