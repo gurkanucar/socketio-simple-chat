@@ -1,4 +1,3 @@
-
 import { useCallback, useEffect, useState } from "react";
 import * as io from "socket.io-client";
 import { SOCKET_BASE_URL } from "../constants/apiConstants";
@@ -17,7 +16,7 @@ export const useSocket = (room, username) => {
     (payload) => {
       socket.emit("send_message", {
         room: room,
-        content: "selamm",
+        content: payload.content,
         username: username,
         messageType: "CLIENT",
       });
