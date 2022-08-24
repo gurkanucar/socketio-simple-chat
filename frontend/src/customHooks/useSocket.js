@@ -1,20 +1,25 @@
+
 import { useCallback, useEffect, useState } from "react";
 import * as io from "socket.io-client";
 import { SOCKET_BASE_URL } from "../constants/apiConstants";
 
-export const useSocket = (room) => {
+export const useSocket = (room, username) => {
   const [socket, setSocket] = useState();
   const [socketResponse, setSocketResponse] = useState({
-    commandName: "",
-    value: "",
+    room: "",
+    content: "",
+    username: "",
+    messageType: "",
+    createdDateTime: "",
   });
   const [isConnected, setConnected] = useState(false);
   const sendData = useCallback(
     (payload) => {
-      socket.emit("commands", {
+      socket.emit("send_message", {
         room: room,
-        commandName: payload.commandName,
-        value: payload.value,
+        content: "selamm",
+        username: username,
+        messageType: "CLIENT",
       });
     },
     [socket, room]
@@ -22,14 +27,18 @@ export const useSocket = (room) => {
   useEffect(() => {
     const s = io(SOCKET_BASE_URL, {
       reconnection: false,
-      query: "room=" + room,
+      query: `username=${username}&room=${room}`, //"room=" + room+",username="+username,
     });
     setSocket(s);
     s.on("connect", () => setConnected(true));
-    s.on("get_command", (res) => {
+    s.on("read_message", (res) => {
+      console.log(res);
       setSocketResponse({
-        commandName: res.commandName,
-        value: res.value,
+        room: res.room,
+        content: res.content,
+        username: res.username,
+        messageType: res.messageType,
+        createdDateTime: res.createdDateTime,
       });
     });
     return () => {
