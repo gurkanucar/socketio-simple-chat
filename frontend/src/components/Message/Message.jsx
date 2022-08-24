@@ -4,18 +4,25 @@ import { RiSendPlaneLine, RiSendPlaneFill } from "react-icons/ri";
 import "./Message.css";
 import { MessageList } from "./MessageList";
 import { timeStampConverter } from "../../util/timeUtils";
+import { useFetch } from "../../customHooks/useFetch";
 
 export const Message = ({ room, username }) => {
   const { isConnected, socketResponse, sendData } = useSocket(room, username);
-
   const [messageInput, setMessageInput] = useState("");
-
   const [messageList, setMessageList] = useState([]);
+
+  const { responseData, error, loading } = useFetch("/message/" + room);
 
   const addMessageToList = (val) => {
     if (val.room == "") return;
     setMessageList([...messageList, val]);
   };
+
+  useEffect(() => {
+    if (responseData != undefined) {
+      setMessageList([...responseData, ...messageList]);
+    }
+  }, [responseData]);
 
   useEffect(() => {
     console.log("Socket Response: ", socketResponse);
@@ -45,7 +52,7 @@ export const Message = ({ room, username }) => {
       <span className="user_name">Welcome: {username} </span>
       <div className="message_component">
         <MessageList username={username} messageList={messageList} />
-        <form class="chat-input" onSubmit={(e) => sendMessage(e)}>
+        <form className="chat-input" onSubmit={(e) => sendMessage(e)}>
           <input
             type="text"
             value={messageInput}

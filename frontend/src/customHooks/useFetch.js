@@ -10,6 +10,7 @@ export const useFetch = (url) => {
   useEffect(() => {
     (async function () {
       try {
+        console.log("send fetch request");
         setLoading(true);
         const response = await axios.get(API_BASE_URL + url);
         setResponseData(response.data);
