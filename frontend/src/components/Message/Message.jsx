@@ -31,12 +31,11 @@ export const Message = ({ room, username }) => {
   };
 
   return (
-    <div>
-      <h1>Message</h1>
-      <h2>Connected: {isConnected}</h2>
-      <h2>{JSON.stringify(socketResponse)}</h2>
-      <button onClick={() => sendMessage()}>send</button>
+    <div className="message_page">
+      <span className="room_name">Room: {room} </span>
+      <span className="user_name">welcome: {username} </span>
       <MessageList username={username} messageList={messageList} />
+      <button onClick={() => sendMessage()}>send</button>
     </div>
   );
 };

@@ -10,7 +10,7 @@ function App() {
   const [isLoggedIn, setLoggedIn] = useState(false);
 
   return (
-    <div className="App">
+    <div>
       {!isLoggedIn ? (
         <Login
           username={username}

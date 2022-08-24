@@ -19,21 +19,23 @@ export const Login = ({
   };
 
   return (
-    <div>
-      <form onSubmit={checkForLogin}>
+    <div className="login_root">
+      <form className="login_form" onSubmit={checkForLogin}>
         <input
+          type="text"
           required
           placeholder="room name"
           value={room}
           onChange={(e) => setRoom(e.target.value)}
         />
         <input
+          type="text"
           required
           placeholder="username"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
         />
-        <button type="submit">Login</button>
+        <input type="submit" value="Login" />
       </form>
     </div>
   );
