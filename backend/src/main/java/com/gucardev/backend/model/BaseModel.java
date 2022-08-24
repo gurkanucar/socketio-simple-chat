@@ -1,13 +1,10 @@
 package com.gucardev.backend.model;
 
 import lombok.Data;
-import org.springframework.data.annotation.CreatedDate;
+import org.hibernate.annotations.CreationTimestamp;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.MappedSuperclass;
-import java.time.LocalDateTime;
+import javax.persistence.*;
+import java.util.Date;
 
 @MappedSuperclass
 @Data
@@ -17,9 +14,9 @@ public abstract class BaseModel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @CreatedDate
-    private LocalDateTime createdDateTime;
-
+    @Column(nullable = false, updatable = false)
+    @CreationTimestamp
+    private Date createdDateTime;
 
 
 }
