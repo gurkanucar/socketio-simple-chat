@@ -9,6 +9,8 @@ import com.gucardev.backend.model.Message;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
+import java.util.stream.Collectors;
+
 @Component
 @Slf4j
 public class SocketModule {
@@ -37,21 +39,25 @@ public class SocketModule {
 
     private ConnectListener onConnected() {
         return (client) -> {
-            String room = client.getHandshakeData().getSingleUrlParam("room");
-            String username = client.getHandshakeData().getSingleUrlParam("room");
+//            String room = client.getHandshakeData().getSingleUrlParam("room");
+//            String username = client.getHandshakeData().getSingleUrlParam("room");
+            var params = client.getHandshakeData().getUrlParams();
+            String room = params.get("room").stream().collect(Collectors.joining());
+            String username = params.get("username").stream().collect(Collectors.joining());
             client.joinRoom(room);
             socketService.saveInfoMessage(client, String.format(Constants.WELCOME_MESSAGE, username), room);
-            log.info("Socket ID[{}] - room[{}]  Connected to chat module through", client.getSessionId().toString(), room);
+            log.info("Socket ID[{}] - room[{}] - username [{}]  Connected to chat module through", client.getSessionId().toString(), room, username);
         };
 
     }
 
     private DisconnectListener onDisconnected() {
         return client -> {
-            String room = client.getHandshakeData().getSingleUrlParam("room");
-            String username = client.getHandshakeData().getSingleUrlParam("room");
+            var params = client.getHandshakeData().getUrlParams();
+            String room = params.get("room").stream().collect(Collectors.joining());
+            String username = params.get("username").stream().collect(Collectors.joining());
             socketService.saveInfoMessage(client, String.format(Constants.DISCONNECT_MESSAGE, username), room);
-            log.info("Client[{}] - Disconnected from chat module.", client.getSessionId().toString());
+            log.info("Socket ID[{}] - room[{}] - username [{}]  discnnected to chat module through", client.getSessionId().toString(), room, username);
         };
     }
 
