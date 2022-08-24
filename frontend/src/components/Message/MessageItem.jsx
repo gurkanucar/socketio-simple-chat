@@ -12,7 +12,7 @@ export const MessageItem = ({ message, username }) => {
       )}
       <div className={"message_content_" + type + self}>
         <span>{message.content}</span>
-        <span>{message.createdDateTime}15:30</span>
+        <span>{message.createdDateTime}</span>
       </div>
     </div>
   );

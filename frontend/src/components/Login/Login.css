@@ -6,6 +6,7 @@
 
 .login_form {
   gap: 20px;
+  min-width: 300px;
   display: flex;
   justify-content: center;
   width: 30%;
